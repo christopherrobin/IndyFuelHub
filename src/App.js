@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import RosterList from './RosterList';
 import { Container, Row, Col } from 'reactstrap';
 import './App.css'
+import { LocalGasStation } from '@material-ui/icons';
 
 class App extends Component {
   render() {
@@ -12,7 +13,10 @@ class App extends Component {
             <Row>
               <Col xs={12}>
                 <header className="App-header">
-                  <h1>Roster Tracker</h1>
+                  <span style={{ fontSize: '3em' }}>
+                    <LocalGasStation fontSize="large"/>
+                  </span>
+                  <strong style={{ fontSize: '2.5em', paddingLeft: '.2em' }}>Indy Fuel Hub</strong>
                 </header>
               </Col>
             </Row>

@@ -9,29 +9,18 @@
 }
 
 .roster-list-tag{
-  color: white;
-  padding: .6em;
-  margin: 0 1em;
   font-weight: bold;
-  font-size: .8em;
+  font-size: 1em;
 }
 
 .incoming{
-  background: #27ae60;
-}
-.outgoing{
-  background: #c0392b;
+  color: #27ae60;
 }
 
-@media (max-width:767px){
-  .roster-list-tag{
-    background: white;
-    padding: 0;
-    font-size: 1em;
-    display: block;
-    margin: 0;
-  }
-  .incoming{color: #27ae60;}
-  .outgoing{color: #c0392b;}
-  .date{display: block;}
+.outgoing{
+  color: #c0392b;
+}
+
+.gray{
+  color: #666;
 }
