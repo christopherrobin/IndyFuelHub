@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Spinner, Container } from 'reactstrap';
+import { Spinner } from 'reactstrap';
 import ReactGA from 'react-ga';
 import RosterListCard from './RosterListCard'
 import Parser from 'rss-parser';
@@ -60,30 +60,18 @@ class RosterList extends Component {
 
     return (
       <div>
-      <div id="roster-list-component">
-        {
-          allRosterMoves ? <div className="subheader"><h3>{feedResults.description}</h3></div> : null
-        }
-        {
-          allRosterMoves ?
-            allRosterMoves.map(move =>
-              <RosterListCard move={move} key={move.contentSnippet} />
-            )
-            : null
-        }
-      </div>
-        <Container>
-          <footer id='footer'>
-            crafted by&nbsp;
-              <a
-              href='http://www.spaceagebrains.com/'
-              target='_blank'
-              rel='noopener noreferrer'
-            >
-              space age brains
-            </a>
-          </footer>
-        </Container>
+        <div id="roster-list-component">
+          {
+            allRosterMoves ? <div className="subheader"><h3>{feedResults.description}</h3></div> : null
+          }
+          {
+            allRosterMoves ?
+              allRosterMoves.map(move =>
+                <RosterListCard move={move} key={move.contentSnippet} />
+              )
+              : null
+          }
+        </div>
       </div>
     );
   }
