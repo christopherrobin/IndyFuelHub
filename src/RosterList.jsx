@@ -4,6 +4,7 @@ import ReactGA from 'react-ga';
 import RosterListCard from './RosterListCard'
 import Parser from 'rss-parser';
 import './RosterList.css'
+// import { get } from 'lodash';
 
 let parser = new Parser();
 const API = `https://cors-anywhere.herokuapp.com/https://www.eliteprospects.com/rss_team.php?team=16336`;
@@ -42,7 +43,6 @@ class RosterList extends Component {
     const { feedResults, isLoading } = this.state;
     const allRosterMoves = this.state.feedResults.items;
     // TODO: return error if we dont have feed results
-    // const error = Object.keys(feedResults).length === 0;
 
     if (isLoading) {
       return(

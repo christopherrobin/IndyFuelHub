@@ -3,17 +3,28 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Transaction from './Transaction'
+import PageNotFound from './PageNotFound';
 import * as serviceWorker from './serviceWorker';
-import { Route, BrowserRouter as Router } from 'react-router-dom'
+import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
+import Header from './Header';
+import Footer from './Footer';
+import { Container } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const routing = (
-  <Router>
-    <div>
-      <Route exact path="/" component={App} />
-      <Route path="/Transaction" component={Transaction} />
-    </div>
-  </Router>
+  <div>
+  <Header/>
+    <Container>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={App} />
+          <Route path="/Transaction/:test" component={Transaction} />
+          <Route component={PageNotFound} path="*" />
+        </Switch>
+      </Router>
+    </Container>
+  <Footer />
+  </div>
 )
 
 ReactDOM.render(routing, document.getElementById('root'))

@@ -6,11 +6,13 @@ padding: 1em 0;
 
 header#header-wrapper {
   padding: 0;
+  margin: 0 0 1.5em 0;
 }
 
 footer#footer{
   text-align: center;
-  margin: 2em 0;
+  margin: 3em 0;
   font-size: .9em;
   color: #666;
+  opacity: .5;
 }
