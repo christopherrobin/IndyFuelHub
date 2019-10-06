@@ -64,7 +64,6 @@ class Transaction extends Component {
     if (!isLoading && allRosterMoves) {
       const filteredMove = getRosterMoveByMoveId.reduce(reducer);
       const sourceLink = split(filteredMove.content, 'Source: <a href="')[1].slice(0, -14);
-      console.log(filteredMove);
       return (
         <div>
           <Link to={'/'}>
