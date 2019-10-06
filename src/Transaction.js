@@ -3,6 +3,7 @@ import { get, filter, split } from 'lodash';
 import { Spinner, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { OpenInNew, ArrowBackIos } from '@material-ui/icons';
+import { Helmet } from "react-helmet";
 import RosterListCard from './RosterListCard'
 import Parser from 'rss-parser';
 
@@ -66,6 +67,11 @@ class Transaction extends Component {
       const sourceLink = split(filteredMove.content, 'Source: <a href="')[1].slice(0, -14);
       return (
         <div>
+          <Helmet>
+              <meta charSet="utf-8" />
+              <title>Indy Fuel Transaction: {filteredMove.title}</title>
+              <link rel="canonical" href="http://IndyFuelHub.com" />
+          </Helmet>
           <Link to={'/'}>
             <Button><ArrowBackIos />Back to all transactions</Button>
           </Link>
