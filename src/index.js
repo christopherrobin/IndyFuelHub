@@ -13,16 +13,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const routing = (
   <div>
-  <Header/>
-    <Container>
-      <Router>
+  <Router>
+    <Header/>
+      <Container>
         <Switch>
           <Route exact path="/" component={App} />
-          <Route path="/Transaction/:test" component={Transaction} />
+          <Route path="/Transaction/:moveId" component={Transaction} />
           <Route component={PageNotFound} path="*" />
         </Switch>
-      </Router>
-    </Container>
+      </Container>
+    </Router>
   <Footer />
   </div>
 )

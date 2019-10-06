@@ -1,31 +1,43 @@
 import React, { Component } from 'react';
-import { Card, CardBody } from 'reactstrap';
+import { split } from 'lodash';
+import { Card, CardBody, Button } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import { Event, Link as LinkIcon, RemoveCircle, GroupAdd } from '@material-ui/icons';
 import './RosterList.css';
-import _ from 'lodash';
-import { Event, Link, RemoveCircle, GroupAdd } from '@material-ui/icons';
 
 class RosterListCard extends Component {
   render() {
     const { move } = this.props;
     const incoming = move.title.includes('to Indy Fuel');
-    const source = _.split(move.content, 'Source: <a href="')[1].slice(0, -14);
+    const source = split(move.content, 'Source: <a href="')[1].slice(0, -14);
+    const moveId = move.guid.slice(-6).replace('=','');
+    const hubLink = `/Transaction/${moveId}`;
     return (
       <div id="RosterListCard">
         <Card
-          key={move.contentSnippet}
+          key={move.moveId}
           className={`roster-list-card-${incoming ? 'incoming' : 'outgoing'}`}>
           <CardBody>
             <h5>{move.title}</h5>
             {
               incoming ?
-                <span className='roster-list-tag incoming'><GroupAdd/> Incoming</span>
+                <div className='roster-list-tag incoming'><GroupAdd/> Incoming</div>
                 :
-                <span className='roster-list-tag outgoing'><RemoveCircle/> Outgoing</span>
+                <div className='roster-list-tag outgoing'><RemoveCircle/> Outgoing</div>
             }
-            <div><span className="gray"><Event /> <span>{move.pubDate}</span></span></div>
+            <div><Event /> <span>{move.pubDate}</span></div>
             <div>
-              <div className="gray" style={{ borderTop: '1px solid #ccc', marginTop: '.6em', paddingTop: '.6em' }}>
-                <Link/> Source <a href={source} target="_blank" rel="noopener noreferrer">{source}</a>
+              <div className="gray" style={{ borderTop: '1px solid #ccc', marginTop: '.6em', paddingTop: '.6em' }}></div>
+              <div>Source: <a href={source} target="_blank" rel="noopener noreferrer">{source}</a></div>
+              <div>
+                <LinkIcon/> IndyFuelHub.com{hubLink}
+              </div>
+              <div className="details-button">
+                <Link to={hubLink}>
+                  <Button block style={{marginTop: '1.5em'}}>
+                    Details
+                  </Button>
+                </Link>
               </div>
             </div>
           </CardBody>

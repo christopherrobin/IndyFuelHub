@@ -9,6 +9,29 @@ header#header-wrapper {
   margin: 0 0 1.5em 0;
 }
 
+header#header-wrapper a {
+  color: #fff;
+}
+header#header-wrapper a:hover {
+  text-decoration: none;
+}
+
+#Individual-Card .roster-list-card-incoming,
+#Individual-Card .roster-list-card-outgoing{
+  box-shadow: none;
+  border: none;
+}
+#Individual-Card{
+  min-height: 65vh;
+}
+#Individual-Card .gray{ display: none }
+#Individual-Card .details-button{ display: none }
+#Individual-Card .card-body{padding: 0;}
+#Individual-Card .card-body div{padding: .5em 0;}
+#Individual-Card{
+  margin-top: 2em;
+}
+
 footer#footer{
   text-align: center;
   margin: 3em 0;
