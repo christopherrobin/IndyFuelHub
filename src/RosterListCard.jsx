@@ -11,7 +11,8 @@ class RosterListCard extends Component {
     const incoming = move.title.includes('to Indy Fuel');
     const source = split(move.content, 'Source: <a href="')[1].slice(0, -14);
     const moveId = move.guid.slice(-6).replace('=','');
-    const hubLink = `/Transaction/${moveId}`;
+    const dateId = move.pubDate.replace('/', '').replace('/', '')
+    const hubLink = `/Transaction/${moveId}/${dateId}`;
     return (
       <div id="RosterListCard">
         <Card

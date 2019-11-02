@@ -36,15 +36,20 @@ class Transaction extends Component {
   }
 
   render() {
-    const { moveId } = this.props.match.params;
+    const { moveId, dateId } = this.props.match.params;
     const { feedResults, isLoading } = this.state;
     const allRosterMoves = get(feedResults, 'items', false);
     
-    const getRosterMoveByMoveId =
-      filter(
-        allRosterMoves,
-        ['guid', `http://www.eliteprospects.com/player.php?player=${moveId}`]
-      );
+    const dateIdFormatted = dateId.slice(0, 4).match(/.{1,2}/g).join("/");
+    const dateIdFormattedWithYear = `${dateIdFormatted}/2019`;
+    
+    const getRosterMoveByMoveId = filter(
+      allRosterMoves, ['guid', `http://www.eliteprospects.com/player.php?player=${moveId}`]
+    );
+
+    const getRosterMove = filter(
+      getRosterMoveByMoveId, ['pubDate', dateIdFormattedWithYear]
+    );
 
     const reducer = (accumulator, currentValue) => accumulator + currentValue;
 
@@ -63,7 +68,7 @@ class Transaction extends Component {
     }
     
     if (!isLoading && allRosterMoves) {
-      const filteredMove = getRosterMoveByMoveId.reduce(reducer);
+      const filteredMove = getRosterMove.reduce(reducer);
       const sourceLink = split(filteredMove.content, 'Source: <a href="')[1].slice(0, -14);
       return (
         <div>
