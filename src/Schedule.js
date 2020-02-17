@@ -44,7 +44,7 @@ const Schedule = () => {
           <link rel="canonical" href="http://www.IndyFuelHub.com/Schedule" />
       </Helmet>
       {
-        fullSchedule && !isLoading ? <h3>Upcoming Schedule</h3> : null
+        fullSchedule && !isLoading ? <div className="subheader"><h3>Upcoming Schedule</h3></div> : null
       }
       {
         isLoading ?

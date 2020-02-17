@@ -6,7 +6,6 @@ padding: 1em 0;
 
 header#header-wrapper {
   padding: 0;
-  margin: 0 0 1.5em 0;
 }
 
 header#header-wrapper a {
@@ -14,6 +13,11 @@ header#header-wrapper a {
 }
 header#header-wrapper a:hover {
   text-decoration: none;
+}
+
+.subheader{
+  margin: 1em 0;
+  color: #666;
 }
 
 #Individual-Card .roster-list-card-incoming,

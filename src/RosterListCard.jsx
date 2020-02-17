@@ -21,13 +21,13 @@ class RosterListCard extends Component {
           <CardBody>
 
             <p><strong>{move.title}</strong></p>
+            <p><Event className="gray" style={{ paddingBottom: '0.10em' }} /> <span>{move.pubDate}</span></p>
             {
               incoming ?
                 <p className='roster-list-tag incoming'><GroupAdd/> Incoming</p>
                 :
                 <p className='roster-list-tag outgoing'><RemoveCircle/> Outgoing</p>
             }
-            <p><Event className="gray" style={{ paddingBottom: '0.10em' }} /> <span>{move.pubDate}</span></p>
             <div className="gray" style={{ borderTop: '1px solid #ccc', marginTop: '.6em', paddingTop: '.6em' }}></div>
             <CardLink href={source} target="_blank" rel="noopener noreferrer">Source</CardLink>
 
