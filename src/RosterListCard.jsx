@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { split } from 'lodash';
-import { Card, CardBody, Button } from 'reactstrap';
+import { Card, CardBody, Button, CardLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Event, Link as LinkIcon, RemoveCircle, GroupAdd } from '@material-ui/icons';
 import './RosterList.css';
@@ -19,20 +19,20 @@ class RosterListCard extends Component {
           key={move.moveId}
           className={`roster-list-card-${incoming ? 'incoming' : 'outgoing'}`}>
           <CardBody>
-            <h5>{move.title}</h5>
+
+            <p><strong>{move.title}</strong></p>
             {
               incoming ?
-                <div className='roster-list-tag incoming'><GroupAdd/> Incoming</div>
+                <p className='roster-list-tag incoming'><GroupAdd/> Incoming</p>
                 :
-                <div className='roster-list-tag outgoing'><RemoveCircle/> Outgoing</div>
+                <p className='roster-list-tag outgoing'><RemoveCircle/> Outgoing</p>
             }
-            <div><Event /> <span>{move.pubDate}</span></div>
-            <div>
-              <div className="gray" style={{ borderTop: '1px solid #ccc', marginTop: '.6em', paddingTop: '.6em' }}></div>
-              <div>Source: <a href={source} target="_blank" rel="noopener noreferrer">{source}</a></div>
-              <div>
-                <LinkIcon/> IndyFuelHub.com{hubLink}
-              </div>
+            <p><Event className="gray" style={{ paddingBottom: '0.10em' }} /> <span>{move.pubDate}</span></p>
+            <div className="gray" style={{ borderTop: '1px solid #ccc', marginTop: '.6em', paddingTop: '.6em' }}></div>
+            <CardLink href={source} target="_blank" rel="noopener noreferrer">Source</CardLink>
+
+            <div style={{ display: 'none' }}>
+              <LinkIcon/> IndyFuelHub.com{hubLink}              
               <div className="details-button">
                 <Link to={hubLink}>
                   <Button block style={{marginTop: '1.5em'}}>
@@ -41,6 +41,7 @@ class RosterListCard extends Component {
                 </Link>
               </div>
             </div>
+
           </CardBody>
         </Card>
       </div>

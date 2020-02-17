@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import Transaction from './Transaction';
 import Stats from './Stats';
+import Schedule from './Schedule';
 import PageNotFound from './PageNotFound';
 import * as serviceWorker from './serviceWorker';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
@@ -21,6 +22,7 @@ const routing = (
           <Route exact path="/" component={App} />
           <Route path="/Transaction/:moveId/:dateId" component={Transaction} />
           <Route path="/Stats" component={Stats} />
+          <Route path="/Schedule" component={Schedule} />
           <Route component={PageNotFound} path="*" />
         </Switch>
       </Container>

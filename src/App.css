@@ -32,6 +32,14 @@ header#header-wrapper a:hover {
   margin-top: 2em;
 }
 
+.spinner-container{
+  width: 10em;
+  margin: auto;
+}
+.spinner-border {
+  color: #d24f41;
+}
+
 footer#footer{
   text-align: center;
   margin: 3em 0;

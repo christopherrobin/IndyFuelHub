@@ -10,7 +10,7 @@ class App extends Component {
         <Helmet>
             <meta charSet="utf-8" />
             <title>Indy Fuel Hub</title>
-            <link rel="canonical" href="http://IndyFuelHub.com" />
+            <link rel="canonical" href="http://www.IndyFuelHub.com" />
         </Helmet>
         <RosterList/>
       </div>
