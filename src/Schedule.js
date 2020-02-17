@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Alert, Spinner, Card, CardBody, CardTitle, CardText, CardLink } from 'reactstrap';
+import { Alert, Spinner, Card, CardBody, CardTitle, CardLink } from 'reactstrap';
 import { Helmet } from "react-helmet";
 import * as moment from 'moment';
 import { get, map } from 'lodash';
-import { Event } from '@material-ui/icons';
+import { Event, Schedule as ScheduleIcon } from '@material-ui/icons';
 
 const Schedule = () => {
   const [hasError, setErrors] = useState(false);
@@ -35,13 +35,12 @@ const Schedule = () => {
   }, []);
 
   const fullSchedule = get(scheduleResponse, '_embedded.events', false);
-  // console.log(fullSchedule);
 
   return (
     <div id="Schedule-Container">
       <Helmet>
-          <meta charSet="utf-8" />
           <title>Indy Fuel Schedule</title>
+          <meta charSet="utf-8" name="theme-color" content="#d24f41" />
           <link rel="canonical" href="http://www.IndyFuelHub.com/Schedule" />
       </Helmet>
       {
@@ -67,14 +66,18 @@ const Schedule = () => {
       {
         fullSchedule && !isLoading ?
         map(fullSchedule, value => {
-          const date = moment(value.dates.start.dateTime).format("MM/DD/YYYY");
+          const date = moment(value.dates.start.dateTime).format("dddd, MMMM Do YYYY");
+          const time = moment(value.dates.start.dateTime).format("hh:mma");
           return (
             <div className="schedule-entry" key={date}>
               <Card style={{ width: '100%', marginBottom: '1em' }}>
               <CardBody>
-                <CardTitle><Event className="gray" style={{ paddingBottom: '0.18em' }} /> {date}</CardTitle>
-                {value.name}
-                <CardText>{value._embedded.venues[0].name}</CardText>
+                <p><strong>{value.name}</strong></p>
+                <CardTitle>
+                  <Event className="gray" style={{ paddingBottom: '0.18em' }} /> {date}
+                </CardTitle>
+                <p><ScheduleIcon className="gray" style={{ paddingBottom: '0.18em' }} /> {time} @ {value._embedded.venues[0].name}</p>
+                <CardLink href={value.url} target="_blank" rel="noopener noreferrer">Buy Tickets</CardLink>
               </CardBody>
               </Card>
             </div>

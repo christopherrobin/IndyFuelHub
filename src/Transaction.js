@@ -73,7 +73,7 @@ class Transaction extends Component {
       return (
         <div>
           <Helmet>
-              <meta charSet="utf-8" />
+              <meta charSet="utf-8" name="theme-color" content="#d24f41" />
               <title>Indy Fuel Transaction: {filteredMove.title}</title>
               <link rel="canonical" href="http://IndyFuelHub.com" />
           </Helmet>
