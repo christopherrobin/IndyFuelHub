@@ -25,6 +25,16 @@ class Header extends Component {
             </Row>
           </Container>
         </header>
+        <div style={{ background: '#f1f1f1' }}>
+          <Container>
+            <Row>
+              <Col xs={12} style={{ margin: '.5em 0' }}>
+              <Link to={'/'}>Transactions</Link>
+              <Link to={'/Schedule'} style={{ marginLeft: '2em' }}>Schedule</Link>
+              </Col>
+            </Row>
+          </Container>
+        </div>
       </div>
     );
   }
