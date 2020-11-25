@@ -23,7 +23,7 @@ cd IndyFuelHub
 npm i
 ```
 
-Let 'er rip on `http://localhost:3000/`
+Grip it and rip it on `http://localhost:3000/`
 
 ```
 npm start
