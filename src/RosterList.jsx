@@ -62,7 +62,7 @@ class RosterList extends Component {
       <div>
         <div id="roster-list-component">
           {
-            allRosterMoves ? <div className="subheader"><h3>{feedResults.description}</h3></div> : null
+            allRosterMoves ? <h2>{feedResults.description}</h2> : null
           }
           {
             allRosterMoves ?

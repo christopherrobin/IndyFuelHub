@@ -20,7 +20,7 @@ class RosterListCard extends Component {
           className={`roster-list-card-${incoming ? 'incoming' : 'outgoing'}`}>
           <CardBody>
 
-            <p><strong>{move.title}</strong></p>
+            <h3>{move.title}</h3>
             <p><Event className="gray" style={{ paddingBottom: '0.10em' }} /> <span>{move.pubDate}</span></p>
             {
               incoming ?

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Alert, Spinner, Card, CardBody, CardTitle, CardLink } from 'reactstrap';
+import { Row, Col, Alert, Spinner, Card, CardBody, CardTitle, CardLink } from 'reactstrap';
 import { Helmet } from "react-helmet";
 import * as moment from 'moment';
 import { get, map } from 'lodash';
 import { Event, Schedule as ScheduleIcon } from '@material-ui/icons';
+import Results from './Results';
 
 const Schedule = () => {
   const [hasError, setErrors] = useState(false);
@@ -43,8 +44,11 @@ const Schedule = () => {
           <meta charSet="utf-8" name="theme-color" content="#d24f41" />
           <link rel="canonical" href="http://www.IndyFuelHub.com/Schedule" />
       </Helmet>
+      <div style={{ marginTop: '2em' }}>
+        <Results />
+      </div>
       {
-        fullSchedule && !isLoading ? <div className="subheader"><h3>Upcoming Schedule</h3></div> : null
+        fullSchedule && !isLoading ? <h2>Upcoming Schedule</h2> : null
       }
       {
         isLoading ?
@@ -69,7 +73,7 @@ const Schedule = () => {
           const date = moment(value.dates.start.dateTime).format("dddd, MMMM Do YYYY");
           const time = moment(value.dates.start.dateTime).format("hh:mma");
           return (
-            <div className="schedule-entry" key={date}>
+            <div className="schedule-entry" key={`${value.name}--${date}`}>
               <Card style={{ width: '100%', marginBottom: '1em' }}>
               <CardBody>
                 <p><strong>{value.name}</strong></p>

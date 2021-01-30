@@ -18,7 +18,7 @@ class Header extends Component {
                   </Link>
                   </span>
                   <Link to={'/'}>
-                    <strong style={{ fontSize: '2.5em', paddingLeft: '.2em' }}>Indy Fuel Hub</strong>
+                    <h1>Indy Fuel Hub</h1>
                   </Link>
                 </header>
               </Col>
