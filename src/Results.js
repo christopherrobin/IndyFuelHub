@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { get, map, filter } from 'lodash';
-import { Row, Col, Collapse, Button, CardBody, Card } from 'reactstrap';
+import { Row, Col, Collapse, Button, CardBody, Card, Alert } from 'reactstrap';
 import ScoreBoard from './ScoreBoard'
 import * as moment from 'moment';
 
@@ -13,7 +13,7 @@ const Results = (props) => {
   const [response, setResponse] = useState({});
 
   async function fetchData() {
-    const res = await fetch("https://thingproxy.freeboard.io/fetch/https://www.echl.com/api/s3?q=schedule-5f4e319b38c0fcf74b12136f.json");
+    const res = await fetch("https://www.echl.com/api/s3?q=schedule-5f4e319b38c0fcf74b12136f.json");
     res
       .json()
       .then(res => setResponse(res))
@@ -27,14 +27,21 @@ const Results = (props) => {
   const toggle = () => setIsOpen(!isOpen);
   const buttonColor = isOpen ? 'secondary' : 'danger';
   const data = get(response, 'data', false);
+  console.log(data);
   const fuelGames = filter(data, x => x.teams.away.name | x.teams.home.name === 'Indy Fuel');
 
   return (
     <div id="Results-Container">
+      <Button color={buttonColor} onClick={toggle} style={{ marginBottom: '1em' }}>Reveal Past Results</Button>
       <Collapse isOpen={isOpen}>
         <Card>
           <CardBody>
             <h2>Past Results</h2>
+            {
+              hasError || !data ?
+              <Alert color="danger">There was an error retrieving past games.</Alert>
+              : null
+            }
             {
               map(fuelGames, game => (
                 <div key={game.externalId}>
