@@ -8,7 +8,7 @@ import RosterListCard from './RosterListCard'
 import Parser from 'rss-parser';
 
 let parser = new Parser();
-const API = `https://cors-anywhere.herokuapp.com/https://www.eliteprospects.com/rss_team.php?team=16336`;
+const API = `https://thingproxy.freeboard.io/fetch/https://www.eliteprospects.com/rss_team.php?team=16336`;
 
 class Transaction extends Component {
   constructor(props) {

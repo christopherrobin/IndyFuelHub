@@ -6,7 +6,7 @@ const Stats = () => {
   const [stats, setStats] = useState({});
 
   async function fetchData() {
-    const res = await fetch("https://cors-anywhere.herokuapp.com/https://www.echl.com/api/s3?q=statistics-players-forwards.json");
+    const res = await fetch("https://thingproxy.freeboard.io/fetch/https://www.echl.com/api/s3?q=statistics-players-forwards.json");
     res
       .json()
       .then(res => setStats(res))

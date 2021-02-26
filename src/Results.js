@@ -31,7 +31,6 @@ const Results = (props) => {
 
   return (
     <div id="Results-Container">
-      <Button color={buttonColor} onClick={toggle} style={{ marginBottom: '1em' }}>Reveal Past Results</Button>
       <Collapse isOpen={isOpen}>
         <Card>
           <CardBody>
