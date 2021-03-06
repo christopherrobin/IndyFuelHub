@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { get, map, filter, orderBy } from 'lodash';
-import { Row, Col, Collapse, Button, CardBody, Card, Alert } from 'reactstrap';
+import { Row, Col, Collapse, Button, CardBody, Card, Alert, Spinner } from 'reactstrap';
 import ScoreBoard from './ScoreBoard'
 import * as moment from 'moment';
 
@@ -15,6 +15,7 @@ const Results = (props) => {
   // Data
   const [hasError, setErrors] = useState(false);
   const [response, setResponse] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   async function fetchData() {
     const url = "https://jsonp.afeld.me/?url=https://www.echl.com/api/s3?q=schedule-5f4e319b38c0fcf74b12136f.json";
@@ -31,6 +32,7 @@ const Results = (props) => {
     );
     res
       .json()
+      .then(setIsLoading(false))
       .then(res => setResponse(res))
       .catch(err => setErrors(err));
   }
@@ -52,15 +54,29 @@ const Results = (props) => {
     <div id="Results-Container">
       {
         isResultsPage ? null : <Button color={buttonColor} onClick={toggle} style={{ marginBottom: '1em' }}>Reveal Spoiler Free Results</Button>
-      }      
+      }
 
       <Collapse isOpen={isOpen}>
         <Card>
           <CardBody>
             <h2>Past Results</h2>
             {
-              hasError || !data ?
+              hasError ?
               <Alert color="danger">There was an error retrieving past games.</Alert>
+              : null
+            }
+            {
+              isLoading ?
+              <div className="loading-spinner">
+                <Spinner
+                  color="danger"
+                  style={{
+                    height: '12em',
+                    width: '12em',
+                  }}
+                />
+                <h2>Loading...</h2>
+              </div>
               : null
             }
             {
