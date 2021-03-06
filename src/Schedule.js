@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Row, Col, Alert, Spinner, Card, CardBody, CardTitle, CardLink } from 'reactstrap';
+import { Alert, Spinner, Card, CardBody, CardTitle, CardLink } from 'reactstrap';
 import { Helmet } from "react-helmet";
 import * as moment from 'moment';
 import { get, map } from 'lodash';
 import { Event, Schedule as ScheduleIcon } from '@material-ui/icons';
 import Results from './Results';
 
-const Schedule = () => {
+const Schedule = (props) => {
   const [hasError, setErrors] = useState(false);
   const [scheduleResponse, setScheduleResponse] = useState({});
   const [isLoading, setIsLoading] = useState(true);

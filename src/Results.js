@@ -1,19 +1,34 @@
 import React, { useState, useEffect } from 'react';
-import { get, map, filter } from 'lodash';
+import { get, map, filter, orderBy } from 'lodash';
 import { Row, Col, Collapse, Button, CardBody, Card, Alert } from 'reactstrap';
 import ScoreBoard from './ScoreBoard'
 import * as moment from 'moment';
 
 const Results = (props) => {
+
+  const pathName = get(props, 'location.pathname', false);
+  const isResultsPage = pathName === '/Results';
+
   // Accordian
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(isResultsPage);
 
   // Data
   const [hasError, setErrors] = useState(false);
   const [response, setResponse] = useState({});
 
   async function fetchData() {
-    const res = await fetch("https://www.echl.com/api/s3?q=schedule-5f4e319b38c0fcf74b12136f.json");
+    const url = "https://jsonp.afeld.me/?url=https://www.echl.com/api/s3?q=schedule-5f4e319b38c0fcf74b12136f.json";
+    const res = await fetch(url,
+      {
+        mode: 'cors'
+      },
+      {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "*"
+        }
+      }
+    );
     res
       .json()
       .then(res => setResponse(res))
@@ -27,12 +42,18 @@ const Results = (props) => {
   const toggle = () => setIsOpen(!isOpen);
   const buttonColor = isOpen ? 'secondary' : 'danger';
   const data = get(response, 'data', false);
-  console.log(data);
-  const fuelGames = filter(data, x => x.teams.away.name | x.teams.home.name === 'Indy Fuel');
+
+  // filter by games that are not the Fuel and haven't started yet
+  const fuelGames = filter(data, x => x.teams.away.name | x.teams.home.name === 'Indy Fuel' && x.status !== 'not-started');
+  // Sort the filtered games by date
+  const fuelGamesSortedAndFiltered = orderBy(fuelGames, function(o) { return new moment(o.startDate); }, ['desc']);
 
   return (
     <div id="Results-Container">
-      <Button color={buttonColor} onClick={toggle} style={{ marginBottom: '1em' }}>Reveal Past Results</Button>
+      {
+        isResultsPage ? null : <Button color={buttonColor} onClick={toggle} style={{ marginBottom: '1em' }}>Reveal Spoiler Free Results</Button>
+      }      
+
       <Collapse isOpen={isOpen}>
         <Card>
           <CardBody>
@@ -43,7 +64,7 @@ const Results = (props) => {
               : null
             }
             {
-              map(fuelGames, game => (
+              map(fuelGamesSortedAndFiltered, game => (
                 <div key={game.externalId}>
                   <div className="results-entry">
                     <div><strong>{moment(get( game, 'startDate', false)).format("dddd, MMMM Do YYYY")} @ {moment(get( game, 'startDate', false)).format("hh:mma")}</strong></div>

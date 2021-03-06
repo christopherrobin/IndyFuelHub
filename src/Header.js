@@ -31,6 +31,7 @@ class Header extends Component {
               <Col xs={12} style={{ margin: '.5em 0' }}>
               <Link to={'/'}>Transactions</Link>
               <Link to={'/Schedule'} style={{ marginLeft: '2em' }}>Schedule</Link>
+              <Link to={'/Results'} style={{ marginLeft: '2em' }}>Spoiler Free Results</Link>
               </Col>
             </Row>
           </Container>
