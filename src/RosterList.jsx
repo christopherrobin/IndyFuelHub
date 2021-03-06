@@ -7,7 +7,7 @@ import './RosterList.css'
 // import { get } from 'lodash';
 
 let parser = new Parser();
-const API = `https://thingproxy.freeboard.io/fetch/https://www.eliteprospects.com/rss_team.php?team=16336`;
+const API = `https://cors-anywhere.herokuapp.com/https://www.eliteprospects.com/rss_team.php?team=16336`;
 
 const initializeReactGA = () => {
   ReactGA.initialize('UA-135718333-1');
